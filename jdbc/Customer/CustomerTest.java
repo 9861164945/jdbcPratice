@@ -8,7 +8,9 @@ import java.util.Scanner;
 
 public class CustomerTest
 {
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
+		
 		Scanner sc=new Scanner(System.in);
 	
 	try(sc;)
@@ -38,9 +40,15 @@ public class CustomerTest
         		System.out.println("Enter Customer Mobike number:");
         		long mob=Long.parseLong(sc.nextLine());
         		int k=smt.executeUpdate("Insert into Customer70 values("+id+",'"+name+"','"+city+"','"+eid+"',"+mob+")");
-        		if(k>0) {
+        		if(k>0) 
+        		{
         			System.out.println("😂😂😂😂😂😂😂😂😂😂Customer Data Inserted Successfully😂😂😂😂😂😂😂😂😂😂");
-        			}
+        		}
+        		else
+        		{
+        			throw new Exception("Error while Inserting  in to the database: ");
+        			
+        		}
         		break;
         	case 2:
                 ResultSet rs = smt.executeQuery("select * from customer70");
@@ -57,6 +65,12 @@ public class CustomerTest
         		if(rs1.next()) 
         		{
         			System.out.println(rs1.getInt(1)+"\t"+rs1.getString(2)+"\t"+rs1.getString(3)+"\t"+rs1.getString(4)+"\t"+rs1.getLong(5));
+        			
+        		}
+        		
+        		else
+        		{
+        			throw new Exception("The Customer Does not exits in the  database ");
         			
         		}
         		break;
