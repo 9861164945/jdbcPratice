@@ -24,6 +24,8 @@ public class HospitalManagement
 	PreparedStatement psUser4=con.prepareStatement("delete from user_details where userid=?");
 	
 	
+	//Doctor table Operation:
+	PreparedStatement psDoct=con.prepareStatement("Insert into doctor values(?,?,?,?,?,?,?,?)");
 	
 	
 	
@@ -35,7 +37,8 @@ public class HospitalManagement
 		System.out.println("3.Patient Operations");
 		System.out.println("4.Medicine Store Operations");
 		System.out.println("5.Medicine operations");
-		System.out.println("6.exit");
+		System.out.println("6.Hospital Operation");
+		System.out.println("7.exit");
 		System.out.println("Enter your choice:");
 		int mainchoice=Integer.parseInt(sc.nextLine());
 		//main switch
@@ -187,15 +190,138 @@ public class HospitalManagement
 			
 			}//user _details switch end
 			break;
+			//Doctor
 		case 2:
+			System.out.println("Doctor Operation");
+			
+			System.out.println("1.Insert doctor");
+			System.out.println("2.View all Doctors");
+			System.out.println("3.View Doctor by Id");
+			System.out.println("4.Update Doctor By Id(dmob,demail,dfees,department)");
+			System.out.println("5.Delete By id");
+			System.out.println("6.Exit");
+			System.out.println("Enter choice:");
+			int dchoice=Integer.parseInt(sc.nextLine());
+			switch(dchoice)
+			{
+			case 1:
+				System.out.println("Insertion");
+				System.out.println("ENter Name of the doctor");
+				String dname=sc.nextLine();
+				System.out.println("Enter Doctor Id");
+				int doid=Integer.parseInt(sc.nextLine());
+				System.out.println("Enter Doctor Designation:");
+				String ddesg=sc.nextLine();
+				System.out.println("Enter Doctor Qualification");
+				String dqual=sc.nextLine();
+				System.out.println("Enter Doctor mobile number:");
+				long dmob=Integer.parseInt(sc.nextLine());
+				System.out.println("Enter Doctor Email:");
+				String demail=sc.nextLine();
+				System.out.println("Enter Doctor Fees:");
+				double fees=Double.parseDouble(sc.nextLine());
+				System.out.println("Enter Doctor Department:");
+				String ddpt=sc.nextLine();
+				psDoct.setString(1, dname);
+				psDoct.setInt(2, doid);
+				psDoct.setString(3, ddesg);
+				psDoct.setString(4, dqual);
+				psDoct.setLong(5,dmob);
+				psDoct.setString(6, demail);
+				psDoct.setDouble(7, fees);
+				psDoct.setString(8, ddpt);
+				int k=psDoct.executeUpdate();
+				if(k>0)
+				{
+					System.out.println("Doctor Data Inserted Successfully");
+					
+				}
+				else
+				{
+					System.err.println("Some thing went wrong while Inserting data");
+					
+				}
+				
+				break;
+			case 2:
+				System.out.println("View  Doctors");
+				break;
+			case 3:
+				System.out.println("View Doctor by Id");
+				break;
+			case 4:
+				System.out.println("Update by Id (dmob,demail,dfees,department)");
+				break;
+			case 5:
+				System.out.println("delete by id");
+				break;
+			case 6:
+				System.out.println("----Operation ended---");
+				System.exit(0);
+				break;
+				default:
+					System.out.println("Invalid choice Pla try again:");
+				
+			}
 			break;
+			//Patient
 		case 3:
+			System.out.println("Patient Operation");
 			break;
+			//Medicine Store
 		case 4:
+			System.out.println("Medicine store operation");
 			break;
+			//Medicine
 		case 5 :
+			System.out.println("Medicine Operation");
 			break;
+			//Hospital
 		case 6:
+			System.out.println("Hospital Operation:");
+			System.out.println("Operations Are:");
+			System.out.println("1.Insert Hospital");
+			System.out.println("2.View all Hospital:");
+			System.out.println("3.View By Department Name(d_name)");
+			System.out.println("4.Update Name By department name(id,name ,address):");
+			System.out.println("5.Delete By name:");
+			System.out.println("6.Exit:");
+			System.out.println("Enter Your Choice:");
+			int hChoice=Integer.parseInt(sc.nextLine());
+			switch(hChoice) 
+			{
+			case 1:
+				System.out.println("Insertion Operation");
+				System.out.println("Enter name of the hospital:");
+				String hname=sc.nextLine();
+				
+					
+				break;
+			case 2:
+				System.out.println("View all Doctor");
+				
+				break;
+			case 3:
+				System.out.println("View by Department");
+			
+				break;
+			case 4:
+				System.out.println("Update By Department name ");
+				break;
+			case 5:
+				System.out.println("Delete by Department name");
+				break;
+			case 6:
+				System.out.println("operation Ended");
+				System.exit(0);
+				break;
+			default:
+				System.out.println("Invalid Operation");
+			}
+			break;
+			
+			//Exit main
+		case 7:
 			System.out.println("---------Operation Ended-----");
 			System.exit(0);
 			default:
